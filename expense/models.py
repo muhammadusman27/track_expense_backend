@@ -5,7 +5,7 @@ from django.db import models
 class Expense(models.Model):
     item = models.ForeignKey('item.Item', on_delete=models.SET_NULL, null=True, db_column='item')
     quantity = models.IntegerField(default=None, null=True, db_column='quantity')
-    name = models.CharField(max_length=255, db_column='name', null=False)
+    name = models.CharField(max_length=255, db_column='name')
     description = models.TextField(null=True, db_column='description')
     price = models.IntegerField(null=False, db_column='price')
     weight = models.FloatField(default=None, null=True, db_column='weight')
