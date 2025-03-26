@@ -17,8 +17,11 @@ def login(request):
     print(user)
     if user is not None:
         token = RefreshToken.for_user(user)
-        print(token)
-        return Response(data={"data": token, "message": "invalid credentials."}, status=HTTP_200_OK)
+        data = {
+        'refresh': str(token),
+        'access': str(token.access_token),
+    }
+        return Response(data={"data": data, "message": ""}, status=HTTP_200_OK)
     else:
         return Response(data={"data": {}, "message": "invalid credentials."}, status=HTTP_400_BAD_REQUEST)
 
