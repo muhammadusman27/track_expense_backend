@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from expense.serializers import ExpenseSerializer
+from rest_framework.permissions import IsAuthenticated
 from expense.models import Expense
 
 
@@ -9,6 +10,7 @@ from expense.models import Expense
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def add(request):
     data = request.data
     serializer = ExpenseSerializer(data=data)
@@ -19,6 +21,7 @@ def add(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def list_expenses(request):
     expenses = Expense.objects.all()
     serializer = ExpenseSerializer(expenses, many=True)
@@ -26,6 +29,7 @@ def list_expenses(request):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def update(request):
     expense_id = request.GET.get('expense_id')
     data = request.data
@@ -41,6 +45,7 @@ def update(request):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def delete(request):
     expense_id = request.GET.get('expense_id')
     try:
