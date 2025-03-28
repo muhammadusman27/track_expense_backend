@@ -1,14 +1,16 @@
-from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from category.serializers import CategorySerializer
 from category.models import Category
+from rest_framework.permissions import IsAuthenticated
+
 
 
 # Create your views here.
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def add(request):
     data = request.data
     serializer = CategorySerializer(data=data)
@@ -19,6 +21,7 @@ def add(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def list_categories(request):
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
@@ -26,6 +29,7 @@ def list_categories(request):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def update(request):
     category_id = request.GET.get('category_id')
     data = request.data
@@ -41,6 +45,7 @@ def update(request):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def delete(request):
     category_id = request.GET.get('category_id')
     try:

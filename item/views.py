@@ -1,12 +1,14 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from item.serializers import ItemSerializer
+from rest_framework.permissions import IsAuthenticated
 from item.models import Item
 
 # Create your views here.
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def add(request):
     data = request.data
     serializer = ItemSerializer(data=data)
@@ -17,6 +19,7 @@ def add(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def list_items(request):
     items = Item.objects.all()
     serializer = ItemSerializer(items, many=True)
@@ -24,6 +27,7 @@ def list_items(request):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def update(request):
     item_id = request.GET.get('item_id')
     data = request.data
@@ -40,6 +44,7 @@ def update(request):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def delete(request):
     item_id = request.GET.get('item_id')
     try:
