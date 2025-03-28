@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "18908a1f-512f-4683-a8ff-bc445cfc75c7",
 		"name": "Expense_Tracker_API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23354672",
 		"_collection_link": "https://warped-resonance-930483.postman.co/workspace/Tekboox~14899d2f-c9e4-41f2-9e32-54adec772d68/collection/23354672-18908a1f-512f-4683-a8ff-bc445cfc75c7?action=share&source=collection_link&creator=23354672"
 	},
@@ -384,9 +384,33 @@
 						{
 							"name": "List All Categories",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
-								"url": "http://127.0.0.1:8000/category/list_categories"
+								"url": {
+									"raw": "http://127.0.0.1:8000/category/list_categories",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"category",
+										"list_categories"
+									]
+								}
 							},
 							"response": [
 								{
@@ -394,7 +418,21 @@
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
-										"url": "http://127.0.0.1:8000/category/list_categories"
+										"url": {
+											"raw": "http://127.0.0.1:8000/category/list_categories",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"category",
+												"list_categories"
+											]
+										}
 									},
 									"status": "OK",
 									"code": 200,
@@ -448,6 +486,38 @@
 						}
 					]
 				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
@@ -470,7 +540,21 @@
 										}
 									}
 								},
-								"url": "http://127.0.0.1:8000/item/add"
+								"url": {
+									"raw": "http://127.0.0.1:8000/item/add",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"item",
+										"add"
+									]
+								}
 							},
 							"response": [
 								{
@@ -487,7 +571,21 @@
 												}
 											}
 										},
-										"url": "http://127.0.0.1:8000/item/add"
+										"url": {
+											"raw": "http://127.0.0.1:8000/item/add",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"item",
+												"add"
+											]
+										}
 									},
 									"status": "OK",
 									"code": 200,
@@ -787,7 +885,21 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://127.0.0.1:8000/item/list_items"
+								"url": {
+									"raw": "http://127.0.0.1:8000/item/list_items",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"item",
+										"list_items"
+									]
+								}
 							},
 							"response": [
 								{
@@ -795,7 +907,21 @@
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
-										"url": "http://127.0.0.1:8000/item/list_items"
+										"url": {
+											"raw": "http://127.0.0.1:8000/item/list_items",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"item",
+												"list_items"
+											]
+										}
 									},
 									"status": "OK",
 									"code": 200,
@@ -849,6 +975,38 @@
 						}
 					]
 				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
@@ -871,7 +1029,21 @@
 										}
 									}
 								},
-								"url": "http://127.0.0.1:8000/expense/add"
+								"url": {
+									"raw": "http://127.0.0.1:8000/expense/add",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"expense",
+										"add"
+									]
+								}
 							},
 							"response": [
 								{
@@ -888,7 +1060,21 @@
 												}
 											}
 										},
-										"url": "http://127.0.0.1:8000/expense/add"
+										"url": {
+											"raw": "http://127.0.0.1:8000/expense/add",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"expense",
+												"add"
+											]
+										}
 									},
 									"status": "OK",
 									"code": 200,
@@ -1188,7 +1374,21 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://127.0.0.1:8000/expense/list_expenses"
+								"url": {
+									"raw": "http://127.0.0.1:8000/expense/list_expenses",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"expense",
+										"list_expenses"
+									]
+								}
 							},
 							"response": [
 								{
@@ -1196,7 +1396,21 @@
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
-										"url": "http://127.0.0.1:8000/expense/list_expenses"
+										"url": {
+											"raw": "http://127.0.0.1:8000/expense/list_expenses",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"expense",
+												"list_expenses"
+											]
+										}
 									},
 									"status": "OK",
 									"code": 200,
@@ -1250,7 +1464,179 @@
 						}
 					]
 				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
 			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"usman2027\",\n    \"password\": \"P@ssword001\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/account/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sign Up",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"muhammad\",\n    \"last_name\": \"usman\",\n    \"email\": \"muhammad2027usman@prg.com\",\n    \"username\": \"usman2027\",\n    \"password\": \"P@ssword001\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/account/signup",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"account",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Refresh",
+					"item": [
+						{
+							"name": "Get New Access and Refresh Token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0Mjk3MjY3MCwiaWF0IjoxNzQyOTcyNDkwLCJqdGkiOiJmNTMwNzFjMzk1Njc0MGU4OWUxZTJlOGExMjFkYmE5NyIsInVzZXJfaWQiOjJ9.xpFQF7lnyPQ_asJTYhETe7O6ptVoiYQAETlxzWulkrA\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/account/token/refresh/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"account",
+										"token",
+										"refresh",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
