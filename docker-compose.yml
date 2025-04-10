@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+    container_name: track_expense
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 127.0.0.1:8000:8000
+    working_dir: /code
+    # volumes:
+    #   - ./:/code
+    environment:
+      DEBUG: "1"
+      DJANGO_SETTINGS_MODULE: track_expense.settings # Adjust to your project settings
