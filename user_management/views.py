@@ -35,3 +35,24 @@ def signup(request):
         return Response(data=user.data, status=HTTP_200_OK)
     else:
         return Response(data=user.errors, status=HTTP_400_BAD_REQUEST)
+    
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
+
+def refresh_access_token(refresh_token_str):
+    try:
+        refresh_token = RefreshToken(refresh_token_str)
+        new_access_token = str(refresh_token.access_token)
+        return {
+            'access': new_access_token,
+            # Optionally return the same refresh token or issue a new one:
+            'refresh': str(refresh_token),
+        }
+    except TokenError as e:
+        return {'error': str(e)}
+    
+@api_view(['POST'])
+def get_new_token(request):
+    data = request.data
+    refresh = str(data['refresh'])
+    data = refresh_access_token(refresh)
+    return Response(data=data, status=HTTP_400_BAD_REQUEST)
