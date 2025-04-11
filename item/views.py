@@ -21,7 +21,7 @@ def add(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def list_items(request):
-    items = Item.objects.all()
+    items = Item.objects.filter(user_id=request.user.id)
     serializer = ItemSerializer(items, many=True)
     return Response(data={"data": serializer.data, "message": "all data"})
 
@@ -33,7 +33,7 @@ def update(request):
     data = request.data
     print(f"data = {data}")
     try:
-        item = Item.objects.get(id=int(item_id))
+        item = Item.objects.get(id=int(item_id), user_id=request.user.id)
         serializer = ItemSerializer(item, data=data)
         if serializer.is_valid():
             serializer.save()
@@ -48,7 +48,7 @@ def update(request):
 def delete(request):
     item_id = request.GET.get('item_id')
     try:
-        item = Item.objects.filter(id=int(item_id)).delete()
+        item = Item.objects.filter(id=int(item_id), user_id=request.user.id).delete()
         return Response(data={"data": {}, "message": "Item deleted successfully."})
     except Exception as e:
         return Response(data={"data": {}, "message": f"{e}"})

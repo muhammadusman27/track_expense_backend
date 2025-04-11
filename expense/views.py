@@ -23,7 +23,7 @@ def add(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def list_expenses(request):
-    expenses = Expense.objects.all()
+    expenses = Expense.objects.filter(user_id=request.user.id)
     serializer = ExpenseSerializer(expenses, many=True)
     return Response(data={"data": serializer.data, "message": "all data"})
 
@@ -34,7 +34,7 @@ def update(request):
     expense_id = request.GET.get('expense_id')
     data = request.data
     try:
-        expense = Expense.objects.get(id=int(expense_id))
+        expense = Expense.objects.get(id=int(expense_id), user_id=request.user.id)
         serializer = ExpenseSerializer(expense, data=data)
         if serializer.is_valid():
             serializer.save()
@@ -49,7 +49,7 @@ def update(request):
 def delete(request):
     expense_id = request.GET.get('expense_id')
     try:
-        expense = Expense.objects.filter(id=int(expense_id)).delete()
+        expense = Expense.objects.filter(id=int(expense_id), user_id=request.user.id).delete()
         return Response(data={"data": {}, "message": "Expense deleted successfully."})
     except Exception as e:
         return Response(data={"data": {}, "message": f"{e}"})

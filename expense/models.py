@@ -12,6 +12,7 @@ class Expense(models.Model):
     weight = models.FloatField(default=None, null=True, db_column='weight')
     weight_unit = models.CharField(choices=[('kg', 'kg'), ('g', 'g'), ('ml', 'ml')], null=True, default=None, db_column='weight_unit', max_length=5)
     date = models.DateField(db_column='date')
+    user = models.ForeignKey(to="user_management.User", on_delete=models.SET_NULL, null=True, db_column='user')
 
 
     class Meta:

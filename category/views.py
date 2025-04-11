@@ -23,7 +23,7 @@ def add(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def list_categories(request):
-    categories = Category.objects.all()
+    categories = Category.objects.filter(user_id=request.user.id)
     serializer = CategorySerializer(categories, many=True)
     return Response(data={"data": serializer.data, "message": "all data"})
 
@@ -34,7 +34,7 @@ def update(request):
     category_id = request.GET.get('category_id')
     data = request.data
     try:
-        category = Category.objects.get(id=int(category_id))
+        category = Category.objects.get(id=int(category_id), user_id=request.user.id)
         serializer = CategorySerializer(category, data=data)
         if serializer.is_valid():
             serializer.save()
@@ -49,7 +49,7 @@ def update(request):
 def delete(request):
     category_id = request.GET.get('category_id')
     try:
-        category = Category.objects.filter(id=int(category_id)).delete()
+        category = Category.objects.filter(id=int(category_id), user_id=request.user.id).delete()
         return Response(data={"data": {}, "message": "Category deleted successfully."})
     except Exception as e:
         return Response(data={"data": {}, "message": f"{e}"})

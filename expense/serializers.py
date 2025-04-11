@@ -9,6 +9,6 @@ class ExpenseSerializer(serializers.ModelSerializer):
         model = Expense
         fields = '__all__'
         ['item','category', 'quantity', 'name', 'description', 'price', 'weight', 'weight_unit', 'date', 'item_name',
-         'category_id', 'category_name']
+         'category_id', 'category_name', 'user']
         
         
