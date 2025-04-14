@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from expense.serializers import ExpenseSerializer
 from rest_framework.permissions import IsAuthenticated
 from expense.models import Expense
+from django.db.models import Sum
 
 
 # Create your views here.
@@ -23,9 +24,31 @@ def add(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def list_expenses(request):
+    category_id = request.GET.get('category_id', None)
     expenses = Expense.objects.filter(user_id=request.user.id)
+    if category_id:
+        expenses = expenses.filter(category_id=category_id)
     serializer = ExpenseSerializer(expenses, many=True)
     return Response(data={"data": serializer.data, "message": "all data"})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def chart(request):
+    expenses = Expense.objects.values('category__name').annotate(total=Sum('price'))
+    labels = [x['category__name'] for x in expenses]
+    data = [x['total'] for x in expenses]
+    print(f"labels = ", labels)
+    print(f"data = ", data)
+    return Response(data={
+        "data": 
+        {
+            "labels": labels,
+            "data": data
+        },
+
+        "message": "all data"
+    })
 
 
 @api_view(['POST'])
