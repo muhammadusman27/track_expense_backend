@@ -20,5 +20,6 @@ urlpatterns = [
     path('category/', include('category.urls')),
     path('item/', include('item.urls')),
     path('expense/', include('expense.urls')),
+    path('income/', include('income.urls')),
     path('account/', include('user_management.urls')),
 ]
