@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'expense.apps.ExpenseConfig',
     'user_management.apps.UserManagementConfig',
     'income.apps.IncomeConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [

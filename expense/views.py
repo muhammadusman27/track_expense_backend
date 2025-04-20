@@ -14,7 +14,7 @@ from django.db.models import Sum
 @permission_classes([IsAuthenticated])
 def add(request):
     data = request.data
-    serializer = ExpenseSerializer(data=data)
+    serializer = ExpenseSerializer(data=data, many=True)
     if serializer.is_valid():
         serializer.save()
         return Response(data={"data": serializer.data, "message": "Expense created successfully."})
