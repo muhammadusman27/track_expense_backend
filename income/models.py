@@ -16,6 +16,7 @@ class Income(models.Model):
 
 class IncomeAmount(models.Model):
     income = models.ForeignKey(to='income.Income', on_delete=models.SET_NULL, null=True, db_column='income')
+    account = models.ForeignKey(to='account.Account', on_delete=models.SET_NULL, null=True, db_column='account')
     date = models.DateField(null=False, db_column='date')
     amount = models.FloatField(null=False, db_column='amount')
     created_at = models.DateTimeField(auto_now_add=True, db_column='created_at')

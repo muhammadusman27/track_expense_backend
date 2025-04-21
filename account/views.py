@@ -16,7 +16,7 @@ def add(request):
     serializer = AccountSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
-        return Response(data={"data": serializer.data, "message": "Category created successfully."})
+        return Response(data={"data": serializer.data, "message": "Account created successfully."})
     return Response(data={"data": {}, "message": serializer.errors})
 
 
@@ -38,7 +38,7 @@ def update(request):
         serializer = AccountSerializer(category, data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response(data={"data": serializer.data, "message": "Category updated successfully."})
+            return Response(data={"data": serializer.data, "message": "Account updated successfully."})
         return Response(data={"data": {}, "message": serializer.errors})
     except Exception as e:
         return Response(data={"data": {}, "message": f"{e}"})
@@ -50,6 +50,6 @@ def delete(request):
     account_id = request.GET.get('account_id')
     try:
         account = Account.objects.filter(id=int(account_id), user_id=request.user.id).delete()
-        return Response(data={"data": {}, "message": "Category deleted successfully."})
+        return Response(data={"data": {}, "message": "Account deleted successfully."})
     except Exception as e:
         return Response(data={"data": {}, "message": f"{e}"})

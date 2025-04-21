@@ -3,17 +3,15 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from user_management.serializers import UserSerializer
 from django.contrib.auth import authenticate
-
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
 # Create your views here.
 
 @api_view(['POST'])
 def login(request):
-    print('data = ', request.data)
     data = request.data
     user = authenticate(username=data['username'], password=data['password'])
-    print(user)
+
     if user is not None:
         token = RefreshToken.for_user(user)
         data = {
@@ -23,7 +21,6 @@ def login(request):
         return Response(data={"data": data, "message": ""}, status=HTTP_200_OK)
     else:
         return Response(data={"data": {}, "message": "invalid credentials."}, status=HTTP_400_BAD_REQUEST)
-
 
 
 @api_view(['POST'])
@@ -36,7 +33,6 @@ def signup(request):
     else:
         return Response(data=user.errors, status=HTTP_400_BAD_REQUEST)
     
-from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
 def refresh_access_token(refresh_token_str):
     try:
@@ -49,7 +45,8 @@ def refresh_access_token(refresh_token_str):
         }
     except TokenError as e:
         return {'error': str(e)}
-    
+
+
 @api_view(['POST'])
 def get_new_token(request):
     data = request.data
