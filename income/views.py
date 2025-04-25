@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from income.serializer import IncomeSerializer, IncomeAmountSerializer
 from income.models import Income, IncomeAmount
-from account.models import Account
+from account.models import Account, Transaction
 
 # Create your views here.
 
@@ -23,6 +23,12 @@ def create(request):
     serializer = IncomeSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
+        Transaction.objects.create(
+            account_id=serializer.data['account'],
+            transaction_type='CREDIT',
+            expense=None,
+            income_amount_id=serializer.data['id']
+        )
         return Response(data={"data": serializer.data})
     return Response(data={"data": {}, "errors": serializer.errors})
 
