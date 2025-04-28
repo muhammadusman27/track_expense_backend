@@ -66,3 +66,11 @@ def create_income_amount(request):
             account_obj.save()
         return Response(data={"data": serializer.data})
     return Response(data={"data": {}, "errors": serializer.errors})
+
+
+@permission_classes([IsAuthenticated])
+@api_view(['GET'])
+def list_income_amount(request):
+    incomes = IncomeAmount.objects.filter(user_id=request.user.id)
+    serializer = IncomeAmountSerializer(incomes, many=True)
+    return Response(data={"data": serializer.data})

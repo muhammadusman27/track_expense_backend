@@ -9,4 +9,6 @@ urlpatterns = [
 
     # create income account crud
     path('create_income_amount', create_income_amount, name='create_income_amount'),
+    # list all added income amount data
+    path('list_income_amount', list_income_amount, name='list_income_amount'),
 ]
