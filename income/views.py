@@ -70,6 +70,12 @@ def create_income_amount(request):
             account_obj = Account.objects.get(user_id=request.user.id, id=obj.account.id)
             account_obj.balance = account_obj.balance + obj.amount
             account_obj.save()
+            Transaction.objects.create(
+                account_id=serializer.data['account'],
+                transaction_type="CREDIT",
+                expense=None,
+                income_amount_id=serializer.data['id']
+            )
         return Response(data={"data": serializer.data})
     return Response(data={"data": {}, "errors": serializer.errors})
 

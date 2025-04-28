@@ -5,6 +5,7 @@ from django_userforeignkey.models.fields import UserForeignKey
 class Expense(models.Model):
     item = models.ForeignKey('item.Item', on_delete=models.SET_NULL, null=True, db_column='item')
     category = models.ForeignKey('category.Category', on_delete=models.SET_NULL, null=True, db_column='category')
+    account = models.ForeignKey(to='account.Account', null=True, blank=True, on_delete=models.SET_NULL, db_column='account')
     quantity = models.IntegerField(default=None, null=True, db_column='quantity')
     name = models.CharField(max_length=255, db_column='name')
     description = models.TextField(null=True, blank=True, db_column='description')

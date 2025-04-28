@@ -11,10 +11,13 @@ class IncomeSerializer(serializers.ModelSerializer):
 
 
 class IncomeAmountSerializer(serializers.ModelSerializer):
+    income_name = serializers.CharField(source="income.name", required=False, allow_null=True, read_only=True)
+    account_name = serializers.CharField(source="account.name", required=False, allow_null=True, read_only=True)
 
     class Meta:
         model = IncomeAmount
-        fields = '__all__'
+        fields = ["id", "income" ,"account" ,"date" ,"amount" ,"created_at" ,"user", "income_name", "account_name"]
+
     
 
     def create(self, validated_data):
