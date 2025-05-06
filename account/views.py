@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from account.serializers import AccountSerializer
-from account.models import Account
+from account.serializers import AccountSerializer, TransactionSerializer
+from account.models import Account, Transaction
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -53,3 +53,12 @@ def delete(request):
         return Response(data={"data": {}, "message": "Account deleted successfully."})
     except Exception as e:
         return Response(data={"data": {}, "message": f"{e}"})
+    
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_all_transaction(request):
+    user_id = request.user.id
+    all_transaction = Transaction.objects.filter(user_id=user_id).order_by('-id')
+    serializer = TransactionSerializer(all_transaction, many=True)
+    return Response(data={"data": serializer.data, "message": "all data"})

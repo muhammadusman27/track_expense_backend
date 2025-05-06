@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'user_management.apps.UserManagementConfig',
     'income.apps.IncomeConfig',
     'account.apps.AccountConfig',
+    'logs.apps.LogsConfig',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,9 @@ MIDDLEWARE = [
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django_userforeignkey.middleware.UserForeignKeyMiddleware',
+
+    'logs.middleware.CurrentUserMiddleware',
+
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
